@@ -1,0 +1,14 @@
+{
+    "name": "S-W-TRIAL",
+    "short_name": "SWT",
+    "icons": [
+        {
+            "src": "/s-w-trial/img/icon/128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#e91e63"
+}
