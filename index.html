@@ -13,7 +13,15 @@ window.addEventListener('load', function() {
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
     
     // push
-    
+    registration.pushManager.getSubscription().then(function(subscription) {
+      if (subscription) {
+        console.log("pushManager endpoint:", subscription.endpoint);
+      }
+      return registration.pushManager.subscribe({
+        userVisibleOnly: true
+      })
+    });
+      
   }, function(err) {
     // registration failed :(
     console.log('ServiceWorker registration failed: ', err);
