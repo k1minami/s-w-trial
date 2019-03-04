@@ -1,24 +1,27 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
+  <title>サービスワーカーお試しページでございます</title>
 </head>
 <body>
   
- <script>
-   if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/s-w-trial/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
+<script>
+ if ('serviceWorker' in navigator) {
+window.addEventListener('load', function() {
+  navigator.serviceWorker.register('/s-w-trial/sw.js').then(function(registration) {
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  }, function(err) {
+    // registration failed :(
+    console.log('ServiceWorker registration failed: ', err);
   });
-   }
-  </script>
+});
+ }
+</script>
 
-index!2
+  HeLLo, index page.<br>
+  <img src="./img/moutakuto.svg" alt="毛沢東">
+  <a href="./second.html">go next page</a><br>
 
 </body>
 </html>
