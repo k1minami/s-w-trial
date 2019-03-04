@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
     
     // push
-    return registration.pushManager.getSubscription().then(function(subscription) {
+    registration.pushManager.getSubscription().then(function(subscription) {
           if (subscription) {
             return subscription
           }
@@ -21,10 +21,14 @@ window.addEventListener('load', function() {
             userVisibleOnly: true
           })
         })
-    }).then(function(subscription) {
+      }).then(function(subscription) {
         var endpoint = subscription.endpoint
-        console.log("pushManager endpoint:", endpoint)
-    }).catch(function(err) {
+        console.log("pushManager endpoint:", endpoint) // https://android.googleapis.com/gcm/send/******:******......
+      }).catch(function(error) {
+        console.warn("serviceWorker error:", error)
+      })
+  
+   }, function(err) {
     // registration failed :(
     console.log('ServiceWorker registration failed: ', err);
   });
