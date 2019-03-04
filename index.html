@@ -12,6 +12,7 @@ window.addEventListener('load', function() {
     // Registration was successful
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
     
+        
     // push
     registration.pushManager.getSubscription().then(function(subscription) {
           if (subscription) {
@@ -31,7 +32,7 @@ window.addEventListener('load', function() {
    }, function(err) {
     // registration failed :(
     console.log('ServiceWorker registration failed: ', err);
-  });
+  })
 });
  }
 </script>
