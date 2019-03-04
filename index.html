@@ -12,27 +12,12 @@ window.addEventListener('load', function() {
     // Registration was successful
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
     
-        
     // push
-    registration.pushManager.getSubscription().then(function(subscription) {
-          if (subscription) {
-            return subscription
-          }
-          return registration.pushManager.subscribe({
-            userVisibleOnly: true
-          })
-        })
-      }).then(function(subscription) {
-        var endpoint = subscription.endpoint
-        console.log("pushManager endpoint:", endpoint) // https://android.googleapis.com/gcm/send/******:******......
-      }).catch(function(error) {
-        console.warn("serviceWorker error:", error)
-      })
-  
-   }, function(err) {
+    
+  }, function(err) {
     // registration failed :(
     console.log('ServiceWorker registration failed: ', err);
-  })
+  });
 });
  }
 </script>
