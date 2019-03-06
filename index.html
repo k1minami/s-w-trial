@@ -4,36 +4,14 @@
   <title>v0306-4 サービスワーカーお試しページでございます</title>
 </head>
 <body>
-  
-<script>
-window.addEventListener('load', function() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/s-w-trial/sw.js')
-      .then(function(registration) {
-        return registration.pushManager.getSubscription().then(function(subscription) {
-          if (subscription) {
-            return subscription
-          }
-          return registration.pushManager.subscribe({
-            userVisibleOnly: true
-          })
-        })
-      }).then(function(subscription) {
-        var endpoint = subscription.endpoint
-        console.log("pushManager endpoint:", endpoint) // https://android.googleapis.com/gcm/send/******:******......
-      }).catch(function(error) {
-        console.warn("serviceWorker error:", error)
-      })
-  }
-})
-</script>
-
+ 
   HeLLo, index page.<br>
   <img src="./img/moutakuto.png" alt="毛沢東">
   <a href="./second.html">go next page</a><br>
 
   
-<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-messaging.js"></script>
 <script>
   // Initialize Firebase
   var config = {
