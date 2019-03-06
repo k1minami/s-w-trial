@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
-  <title>v0306-9 サービスワーカーお試しページでございます</title>
+  <title>v0306-10 サービスワーカーお試しページでございます</title>
 </head>
 <body>
  
@@ -20,6 +20,10 @@
       'messagingSenderId': '419458027222'
     });
     const messaging = firebase.messaging();
+    navigator.serviceWorker.register('/s-w-trial/firebase-messaging-sw.js')
+    .then((registration) => {
+      messaging.useServiceWorker(registration);
+    });
     messaging.onMessage(function(payload) {
       console.log("Message received. ", payload);
       alert(payload.notification.title+"\r\n"
