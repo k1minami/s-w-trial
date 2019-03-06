@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
-  <title>v0306-6 サービスワーカーお試しページでございます</title>
+  <title>v0306-7 サービスワーカーお試しページでございます</title>
 </head>
 <body>
  
@@ -9,44 +9,43 @@
   <img src="./img/moutakuto.png" alt="毛沢東">
   <a href="./second.html">go next page</a><br>
 
+  <input type="button" id="btnWebPush" value="WebPush権限を取得">
+  <br>
+  <input type="text" value="YOUR-IID-TOKEN" id="txtIIToken" style="width:80%;">
   
-<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-messaging.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDwt40xRZ4l0J44IMEuJrapEY4q-0VcRJ4",
-    authDomain: "fir-w-trial.firebaseapp.com",
-    databaseURL: "https://fir-w-trial.firebaseio.com",
-    projectId: "s-w-trial",
-    storageBucket: "s-w-trial.appspot.com",
-    messagingSenderId: "419458027222"
-  };
-  firebase.initializeApp(config);
-
-  // Retrieve Firebase Messaging object.
-  const messaging = firebase.messaging();
-  
-  // Add the public key generated from the console here.
-  messaging.usePublicVapidKey("BFK9unKkaJGPg3pfkk2X8ylL28Hrd-lCipG6WdJyxnmOhn-uGOWB7VZD6XUulW-87pAA_rfyyvqP2RMciXHaSZY");
-  
-  messaging.requestPermission().then(function() {
-    console.log('Notification permission granted.');
-    // TODO(developer): Retrieve an Instance ID token for use with FCM.
-    // ...
-     //ユーザー毎のトークンを取得して画面に表示する
-    messaging.getToken()
-    .then(function(token) {
-      console.log('Token refreshed.');
-      console.log("token "+token);
-    })
-    .catch(function(err) {
-      console.log('Unable to retrieve refreshed token ', err);
+  <script>
+    const messaging = firebase.messaging();
+    messaging.onMessage(function(payload) {
+      console.log("Message received. ", payload);
+      alert(payload.notification.title+"\r\n"
+            +payload.notification.body+"\r\n"
+            +payload.notification.icon);
     });
-  }).catch(function(err) {
-    console.log('Unable to get permission to notify.', err);
-  });
-</script>
-  
+
+    //プッシュ通知パーミッション取得
+    var requestPermission = function () {
+      messaging.requestPermission()
+      .then(function() {
+        //ユーザー毎のトークンを取得して画面に表示する
+        messaging.getToken()
+        .then(function(token) {
+          console.log('Token refreshed.');
+          console.log("token "+token);
+          document.getElementById("txtIIToken").value = token;
+        })
+        .catch(function(err) {
+          console.log('Unable to retrieve refreshed token ', err);
+        });
+      })
+      .catch(function(err) {
+        console.log('Unable to get permission to notify.', err);
+      });
+    }
+    window.onload = function() {
+      //パーミッションを取得するボタンクリック時
+      document.getElementById("btnWebPush").onclick = requestPermission;
+    };
+  </script>
+    
 </body>
 </html>
