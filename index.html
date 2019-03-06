@@ -6,31 +6,26 @@
 <body>
   
 <script>
- if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/s-w-trial/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      // Push
-      return registration.pushManager.getSubscription().then(function(subscription) {
-            if (subscription) {
-              return subscription
-            }
-            return registration.pushManager.subscribe({
-              userVisibleOnly: true
-            })
-          });
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    }).then(function(subscription) {
-      var endpoint = subscription.endpoint
-          console.log("pushManager endpoint:", endpoint) // https://android.googleapis.com/gcm/send/******:******......
-    }).catch(function(error) {
-      console.warn("serviceWorker error:", error)
-    });
-  });
- }
+window.addEventListener('load', function() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/serviceWorker.js')
+      .then(function(registration) {
+        return registration.pushManager.getSubscription().then(function(subscription) {
+          if (subscription) {
+            return subscription
+          }
+          return registration.pushManager.subscribe({
+            userVisibleOnly: true
+          })
+        })
+      }).then(function(subscription) {
+        var endpoint = subscription.endpoint
+        console.log("pushManager endpoint:", endpoint) // https://android.googleapis.com/gcm/send/******:******......
+      }).catch(function(error) {
+        console.warn("serviceWorker error:", error)
+      })
+  }
+})
 </script>
 
   HeLLo, index page.<br>
