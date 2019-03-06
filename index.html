@@ -1,14 +1,14 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
-  <title>v0306-2 サービスワーカーお試しページでございます</title>
+  <title>v0306-3 サービスワーカーお試しページでございます</title>
 </head>
 <body>
   
 <script>
 window.addEventListener('load', function() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/serviceWorker.js')
+    navigator.serviceWorker.register('/s-w-trial/sw.js')
       .then(function(registration) {
         return registration.pushManager.getSubscription().then(function(subscription) {
           if (subscription) {
