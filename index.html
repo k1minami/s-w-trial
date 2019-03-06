@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
-  <title>v0306-3 サービスワーカーお試しページでございます</title>
+  <title>v0306-4 サービスワーカーお試しページでございます</title>
 </head>
 <body>
   
@@ -45,6 +45,20 @@ window.addEventListener('load', function() {
     messagingSenderId: "419458027222"
   };
   firebase.initializeApp(config);
+
+  // Retrieve Firebase Messaging object.
+  const messaging = firebase.messaging();
+  
+  // Add the public key generated from the console here.
+  messaging.usePublicVapidKey("BFK9unKkaJGPg3pfkk2X8ylL28Hrd-lCipG6WdJyxnmOhn-uGOWB7VZD6XUulW-87pAA_rfyyvqP2RMciXHaSZY");
+  
+  messaging.requestPermission().then(function() {
+    console.log('Notification permission granted.');
+    // TODO(developer): Retrieve an Instance ID token for use with FCM.
+    // ...
+  }).catch(function(err) {
+    console.log('Unable to get permission to notify.', err);
+  });
 </script>
   
 </body>
