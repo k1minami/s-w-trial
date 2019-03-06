@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
-  <title>v0306-7 サービスワーカーお試しページでございます</title>
+  <title>v0306-8 サービスワーカーお試しページでございます</title>
 </head>
 <body>
  
@@ -13,6 +13,8 @@
   <br>
   <input type="text" value="YOUR-IID-TOKEN" id="txtIIToken" style="width:80%;">
   
+  <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-messaging.js"></script>
   <script>
     const messaging = firebase.messaging();
     messaging.onMessage(function(payload) {
