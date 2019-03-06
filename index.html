@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="manifest" href="./manifest.json">
-  <title>v0306-8 サービスワーカーお試しページでございます</title>
+  <title>v0306-9 サービスワーカーお試しページでございます</title>
 </head>
 <body>
  
@@ -16,6 +16,9 @@
   <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-messaging.js"></script>
   <script>
+    firebase.initializeApp({
+      'messagingSenderId': '419458027222'
+    });
     const messaging = firebase.messaging();
     messaging.onMessage(function(payload) {
       console.log("Message received. ", payload);
